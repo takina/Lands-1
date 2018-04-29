@@ -10,7 +10,7 @@
         #region Properties
         //Esta propiedad se pone acá, para que pueda usarse desde cualquier
         //parte de la aplicación
-        public static object Navigator
+        public static NavigationPage Navigator
         {
             get;
             internal set;
