@@ -139,9 +139,21 @@
             }
 
             var mainViewModel = MainViewModel.GetInstance();
-            mainViewModel.Token = token;
+            //guardando el token en memoria de la aplicación
+            mainViewModel.Token = token.AccessToken;
+            mainViewModel.TokenType = token.TokenType;
+
+            if (this.IsRemembered)
+            {
+                //Guardando los token en persistencia, es decir en la memoria del teléfono
+                Settings.Token = token.AccessToken;
+                Settings.TokenType = token.TokenType;
+            }
+        
             mainViewModel.Lands = new LandsViewModel();
-            await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
+            Application.Current.MainPage = new MasterPage();//Esta forma de navegación es para que no se pueda devolver con el
+            //botón de atrás
+            //await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
 
             this.IsRunning = false;
             this.IsEnabled = true;

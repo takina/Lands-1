@@ -7,14 +7,25 @@
              BackgroundColor="Navy"
              Title="{i18n:Translate Menu}">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout
+            Padding="5,20,5,5">
+            <Image
+                Source="onu"
+                WidthRequest="100"/>
             <ListView 
+                BackgroundColor="Navy"
                 ItemsSource="{Binding Menus}"
-                 HasUnevenRows="True">
+                 HasUnevenRows="True"
+                 SeparatorVisibility="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <Grid>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NavigateCommand}">
+                                        
+                                    </TapGestureRecognizer>
+                                </Grid.GestureRecognizers>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
