@@ -246,4 +246,16 @@
   <data name="MyLanguages" xml:space="preserve">
     <value>Idiomas</value>
   </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Fechar Sessao</value>
+  </data>
+  <data name="MyProfile" xml:space="preserve">
+    <value>Meu Perfil</value>
+  </data>
+  <data name="Statics" xml:space="preserve">
+    <value>Estatísticas</value>
+  </data>
 </root>

@@ -13,8 +13,12 @@
 
     public class ApiService
     {
+
         public async Task<Response> CheckConnection()
         {
+            //si el celular està en modo aviòn o tenemos desactivado
+            //el internet en el celu
+            //verificamos con este if
             if (!CrossConnectivity.Current.IsConnected)
             {
                 return new Response
@@ -24,6 +28,9 @@
                 };
             }
 
+            //despues de que estè encendido el internet, verificamos que haya salida
+            //al internet haciendole un pin a google que nos devuelve true o false
+            //y se guarda en la variable isReachable
             var isReachable = await CrossConnectivity.Current.IsRemoteReachable(
                 "google.com");
             if (!isReachable)
@@ -49,6 +56,7 @@
         {
             try
             {
+                //HttpClient es la clase que nos provee los servicios de comunicación
                 var client = new HttpClient();
                 client.BaseAddress = new Uri(urlBase);
                 var response = await client.PostAsync("Token",
@@ -56,7 +64,9 @@
                     "grant_type=password&username={0}&password={1}",
                     username, password),
                     Encoding.UTF8, "application/x-www-form-urlencoded"));
+                //se devuelve un JSon
                 var resultJSON = await response.Content.ReadAsStringAsync();
+                //Des serializando el contenido Json, respuesta(response) en la clase tokenResponse
                 var result = JsonConvert.DeserializeObject<TokenResponse>(
                     resultJSON);
                 return result;
@@ -77,7 +87,9 @@
         {
             try
             {
+                //creamos un cliente http
                 var client = new HttpClient();
+                //Al cliente http, le cargamos la direccòn base
                 client.DefaultRequestHeaders.Authorization =
                     new AuthenticationHeaderValue(tokenType, accessToken);
                 client.BaseAddress = new Uri(urlBase);
