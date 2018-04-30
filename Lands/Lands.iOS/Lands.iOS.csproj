@@ -177,4 +177,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\ic_settings.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_menu.png" />
+  </ItemGroup>
 </Project>

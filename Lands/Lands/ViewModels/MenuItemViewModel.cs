@@ -46,7 +46,8 @@ namespace Lands.ViewModels
                 mainViewModel.TokenType = string.Empty;
 
                 //Ya después se redigire a la vista Login
-                Application.Current.MainPage = new LoginPage();
+                Application.Current.MainPage = new NavigationPage(
+                    new LoginPage());
                
             }
         }
