@@ -83,9 +83,13 @@
             }
         }
 
-        private void Register()
+        private async void Register()
         {
-            throw new NotImplementedException();
+            //Antes de yo instanciar la página, debo intanciar la view model que acompaña a la page
+            MainViewModel.GetInstance().Register = new RegisterViewModel();
+
+            
+            await Application.Current.MainPage.Navigation.PushAsync(new RegisterPage());
         }
 
         private async void Login()
