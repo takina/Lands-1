@@ -6,6 +6,7 @@
     using Views;
     using Xamarin.Forms;
     using Helpers;
+    using System;
 
     public class LoginViewModel : BaseViewModel
     {
@@ -72,6 +73,19 @@
             {
                 return new RelayCommand(Login);
             }
+        }
+
+        public ICommand RegisterCommand
+        {
+            get
+            {
+                return new RelayCommand(Register);
+            }
+        }
+
+        private void Register()
+        {
+            throw new NotImplementedException();
         }
 
         private async void Login()

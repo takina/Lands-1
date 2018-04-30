@@ -258,4 +258,107 @@
   <data name="Statics" xml:space="preserve">
     <value>Estatísticas</value>
   </data>
+
+<data name="RegisterTitle" xml:space="preserve">
+    <value>Registre Novo Usuário</value>
+  </data>
+  <data name="ChangeImage" xml:space="preserve">
+    <value>Toque a imagem para alterá-la.</value>
+  </data>
+  <data name="FirstNameLabel" xml:space="preserve">
+    <value>Nomes</value>
+  </data>
+  <data name="FirstNamePlaceHolder" xml:space="preserve">
+    <value>Digite os nomes...</value>
+  </data>
+  <data name="FirstNameValidation" xml:space="preserve">
+    <value>Você deve digitar o nome(s)</value>
+  </data>
+  <data name="LastNameLabel" xml:space="preserve">
+    <value>Sobrenome</value>
+  </data>
+  <data name="LastNamePlaceHolder" xml:space="preserve">
+    <value>Insira sobrenomes...</value>
+  </data>
+  <data name="LastNameValidation" xml:space="preserve">
+    <value>Você deve inserir o sobrenome(s).</value>
+  </data>
+  <data name="PhoneLabel" xml:space="preserve">
+    <value>Teléfono</value>
+  </data>
+  <data name="PhonePlaceHolder" xml:space="preserve">
+    <value>Digite o telefone...</value>
+  </data>
+  <data name="PhoneValidation" xml:space="preserve">
+    <value>Você deve inserir um telefone.</value>
+  </data>
+  <data name="ConfirmLabel" xml:space="preserve">
+    <value>Confirmação</value>
+  </data>
+  <data name="ConfirmPlaceHolder" xml:space="preserve">
+    <value>Digite a confirmação da chave...</value>
+  </data>
+  <data name="ConfirmValidation" xml:space="preserve">
+    <value>Você deve digitar a confirmação da senha.</value>
+  </data>
+  <data name="EmailValidation2" xml:space="preserve">
+    <value>Você deve inserir um e-mail válido.</value>
+  </data>
+  <data name="PasswordValidation2" xml:space="preserve">
+    <value>A senha deve ter pelo menos seis (6) caracteres.</value>
+  </data>
+  <data name="ConfirmValidation2" xml:space="preserve">
+    <value>A senha e a confirmação não correspondem.</value>
+  </data>
+  <data name="UserRegisteredMessage" xml:space="preserve">
+    <value>Usuário registrado, você pode inserir com este e-mail e senha atribuída.</value>
+  </data>
+  <data name="SourceImageQuestion" xml:space="preserve">
+    <value>De onde você quer tirar a foto?</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="FromGallery" xml:space="preserve">
+    <value>Da galeria</value>
+  </data>
+  <data name="FromCamera" xml:space="preserve">
+    <value>Da câmera</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Salvar</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Alterar Senha</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Senha atual</value>
+  </data>
+  <data name="CurrentPasswordPlaceHolder" xml:space="preserve">
+    <value>Digite sua senha atual...</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Nova senha</value>
+  </data>
+  <data name="NewPasswordPlaceHolder" xml:space="preserve">
+    <value>Digite a nova senha...</value>
+  </data>
+  <data name="ConnectionError1" xml:space="preserve">
+    <value>Verifique se você ativou os parâmetros da internet.</value>
+  </data>
+  <data name="ConnectionError2" xml:space="preserve">
+    <value>Verifique se você possui uma conexão com a internet.</value>
+  </data>
+  <data name="LoginError" xml:space="preserve">
+    <value>E-mail ou senha incorretos.</value>
+  </data>
+  <data name="ChagePasswordConfirm" xml:space="preserve">
+    <value>A senha foi alterada com sucesso.</value>
+  </data>
+  <data name="PasswordError" xml:space="preserve">
+    <value>A senha atual está incorreta</value>
+  </data>
+  <data name="ErrorChangingPassword" xml:space="preserve">
+    <value>A senha não pode ser alterada, tente mais tarde.</value>
+  </data>
 </root>
