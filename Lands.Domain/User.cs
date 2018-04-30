@@ -32,6 +32,11 @@
         [Display(Name = "Image")]
         public string ImagePath { get; set; }
 
+        public int UserTypeId { get; set; }
+
+        [JsonIgnore]//se pone esta anotación, para que Json ignore esta propiedad, ya que no es capáz de serializarla ni des serializar, por ser una property virtual
+        public virtual UserType UserType { get; set; }//Una propiedad virtual, es para que no se mapee en la base de datos
+
         [Display(Name = "Image")]
         public string ImageFullPath
         {

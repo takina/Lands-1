@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.Lands">
 	<uses-sdk android:minSdkVersion="15" />
-	<application android:label="Lands.Android"></application>
+  <uses-permission android:name="android.permission.CAMERA" />!---- Permiso para que la aplicación pueda usar la cámara del celu---->
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />!---- Permiso para que la aplicación pueda escribir en la galería de imágenes del celu---->
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />!---- Permiso para que la aplicación pueda leer la galería de imágenes del celu---->
+
+  <application android:label="Lands.Android"></application>
 </manifest>
