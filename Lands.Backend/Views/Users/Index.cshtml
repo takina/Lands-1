@@ -47,15 +47,20 @@
             @Html.DisplayFor(modelItem => item.Telephone)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ImagePath)
+            @if (!string.IsNullOrEmpty(item.ImagePath))
+            {
+                 <img src="@Url.Content(item.ImageFullPath)" alt="Image" style="width:20px;height:20px;max-width: 100%; height: auto;" />
+
+            }
         </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.UserType.Name)
         </td>
         <td>
-           
+
             @Html.ActionLink("Details", "Details", new { id = item.UserId }) |
-            
+
         </td>
     </tr>
 }

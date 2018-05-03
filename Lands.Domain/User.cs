@@ -37,6 +37,11 @@
         [JsonIgnore]//se pone esta anotación, para que Json ignore esta propiedad, ya que no es capáz de serializarla ni des serializar, por ser una property virtual
         public virtual UserType UserType { get; set; }//Una propiedad virtual, es para que no se mapee en la base de datos
 
+        [NotMapped]
+        public byte[] ImageArray { get; set; }//La imñagen se envía como un array de bytes
+
+        [NotMapped]
+        public string Password { get; set; }
 
         [Display(Name = "Image")]
         public string ImageFullPath

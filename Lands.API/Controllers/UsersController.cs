@@ -75,7 +75,7 @@ namespace Lands.API.Controllers
 
         // POST: api/Users
         [ResponseType(typeof(User))]
-        public async Task<IHttpActionResult> PostUser(UserView view)
+        public async Task<IHttpActionResult> PostUser(User model)
         {
             if (!ModelState.IsValid)
             {
@@ -83,10 +83,10 @@ namespace Lands.API.Controllers
             }
 
             //Si el usuario tenía foto
-            if (view.ImageArray != null && view.ImageArray.Length > 0)
+            if (model.ImageArray != null && model.ImageArray.Length > 0)
             {
                 //Convirtiendo un ImageArray en un stream
-                var stream = new MemoryStream(view.ImageArray);
+                var stream = new MemoryStream(model.ImageArray);
 
                 //Un Guid es un código alfanumérico Random, que va a ser imposible que le de dos Guids iguales
                 //Es muy utilizado para generar claves
@@ -105,39 +105,24 @@ namespace Lands.API.Controllers
                 if (response)
                 {
 
-                    view.ImagePath = fullPath;
+                    model.ImagePath = fullPath;
                 }
             }
-            var user = this.ToUser(view);
+            
 
-            db.Users.Add(user);
+            db.Users.Add(model);
             //Aquí creamos el usuario con toda la información enviada desde el modelo, se guarda en la tabla usuarios de la base de datos
             await db.SaveChangesAsync();
 
             //Aquí estamos creando el usuario también en la tabla de seguridad
-            UsersHelper.CreateUserASP(view.Email, "User", view.Password);
+            UsersHelper.CreateUserASP(model.Email, "User", model.Password);
 
            
 
-            return CreatedAtRoute("DefaultApi", new { id = view.UserId }, view);
+            return CreatedAtRoute("DefaultApi", new { id = model.UserId }, model);
         }
 
-        //Estamos convirtiendo un objeto userview en user
-        private User ToUser(UserView view)
-        {
-            return new User
-            {
-                Email = view.Email,
-                FirstName = view.FirstName,
-                ImagePath = view.ImagePath,
-                LastName = view.LastName,
-                Telephone = view.Telephone,
-                UserId = view.UserId,
-                UserType = view.UserType,
-                UserTypeId = view.UserTypeId,
-
-            };
-        }
+        
 
         // DELETE: api/Users/5
         [ResponseType(typeof(User))]
