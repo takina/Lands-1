@@ -317,6 +317,7 @@
         {
             try
             {
+                //Capturo el modelo y lo serializo a formato Json, el objeto ya serializado, queda guardado en la variable request
                 var request = JsonConvert.SerializeObject(model);
                 var content = new StringContent(
                     request,

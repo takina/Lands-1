@@ -128,8 +128,9 @@
                 return;
             }
 
+            var apiSecurity = Application.Current.Resources["APISecurity"].ToString();
             var token = await this.apiService.GetToken(
-                "http://LandsA.somee.com", 
+                apiSecurity, 
                 this.Email, 
                 this.Password);
 

@@ -116,6 +116,7 @@ namespace Lands.ViewModels
         #region methods
         private async void Register()
         {
+            //Validamos que haya ingresado nombres
             if (string.IsNullOrEmpty(this.FirstName))
             {
                 await Application.Current.MainPage.DisplayAlert(
@@ -124,7 +125,7 @@ namespace Lands.ViewModels
                     Languages.Accept);
                 return;
             }
-
+            //validamos que haya ingresado apellidos
             if (string.IsNullOrEmpty(this.LastName))
             {
                 await Application.Current.MainPage.DisplayAlert(
@@ -133,7 +134,7 @@ namespace Lands.ViewModels
                     Languages.Accept);
                 return;
             }
-
+            //validamos que haya ingresado un email
             if (string.IsNullOrEmpty(this.Email))
             {
                 await Application.Current.MainPage.DisplayAlert(
@@ -142,7 +143,7 @@ namespace Lands.ViewModels
                     Languages.Accept);
                 return;
             }
-
+            //validamos que el email sea válido
             if (!RegexUtilities.IsValidEmail(this.Email))
             {
                 await Application.Current.MainPage.DisplayAlert(
@@ -151,7 +152,7 @@ namespace Lands.ViewModels
                     Languages.Accept);
                 return;
             }
-
+            //validamos que haya ingresado un numero de teléfono
             if (string.IsNullOrEmpty(this.Telephone))
             {
                 await Application.Current.MainPage.DisplayAlert(
@@ -160,7 +161,7 @@ namespace Lands.ViewModels
                     Languages.Accept);
                 return;
             }
-
+            //validamos que haya ingresado una contraseña
             if (string.IsNullOrEmpty(this.Password))
             {
                 await Application.Current.MainPage.DisplayAlert(
@@ -169,7 +170,7 @@ namespace Lands.ViewModels
                     Languages.Accept);
                 return;
             }
-
+            //validamos que la longitud del pasword sea la adecuada
             if (this.Password.Length < 6)
             {
                 await Application.Current.MainPage.DisplayAlert(
