@@ -49,7 +49,7 @@
                 }
 
                 return string.Format(
-                    "http://landsapi1.azurewebsites.net/{0}",
+                    "http://LandsA.somee.com/{0}",
                     ImagePath.Substring(1));
             }
         }
