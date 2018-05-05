@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using Lands.Domain;
     using Lands.Helpers;
     using Models;
 
@@ -22,6 +23,12 @@
         }
 
         public string TokenType
+        {
+            get;
+            set;
+        }
+
+        public User User
         {
             get;
             set;
