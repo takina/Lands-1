@@ -12,9 +12,13 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Lands.API.Helpers;
 using Lands.Domain;
+using Newtonsoft.Json.Linq;
 
 namespace Lands.API.Controllers
 {
+    //Cuando hagamos lo que hicimos con el método GetUserByEmail
+    //Debemos agregar este DataAnnotations Route Prefix a toda la clase
+    [RoutePrefix("api/Users")]
     public class UsersController : ApiController
     {
         private DataContext db = new DataContext();
@@ -26,10 +30,28 @@ namespace Lands.API.Controllers
         }
 
         // GET: api/Users/5
-        [ResponseType(typeof(User))]
-        public async Task<IHttpActionResult> GetUser(int id)
+        [HttpPost]//Le cambiamos la naturaleza al método a un post
+        [Route("GetUserByEmail")]//el método se va a llamar GetUserByEmail
+        public async Task<IHttpActionResult> GetUserByEmail(JObject form)//Aquí le pasamos un objeto JSon como parámetro llamado form
         {
-            User user = await db.Users.FindAsync(id);
+           
+                var email = string.Empty;
+                dynamic jsonObject = form;
+                try
+                {
+                    email = jsonObject.Email.Value;//El email viene de un objeto llamado JObject
+                }
+                catch
+                {
+                    return BadRequest("Missing Parameter");
+                }
+            
+         
+            //User user = await db.Users.FindAsync(id);
+            var user = await db.Users.
+                Where(u => u.Email.ToLower() == email.ToLower()).
+                FirstOrDefaultAsync();
+
             if (user == null)
             {
                 return NotFound();
