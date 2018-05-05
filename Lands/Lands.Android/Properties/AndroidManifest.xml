@@ -5,5 +5,13 @@
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />!---- Permiso para que la aplicación pueda escribir en la galería de imágenes del celu---->
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />!---- Permiso para que la aplicación pueda leer la galería de imágenes del celu---->
 
-  <application android:label="Lands.Android"></application>
+  <application android:label="Lands.Android">
+
+  <provider android:name="android.support.v4.content.FileProvider" android:authorities="com.companyname.Lands.fileprovider" android:exported="false" android:grantUriPermissions="true">
+    <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths">!---Esta línea se agregar para poder tomar fotos desde la aplicacón---->
+      
+    </meta-data>
+  </provider>
+
+  </application>
 </manifest>

@@ -3,7 +3,9 @@
     using Android.App;
     using Android.Content.PM;
     using Android.OS;
+    using Android.Runtime;
     using FFImageLoading.Forms.Droid;
+    using Plugin.Permissions;
 
     [Activity(Label = "Lands", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
@@ -18,6 +20,19 @@
             global::Xamarin.Forms.Forms.Init(this, bundle);
             CachedImageRenderer.Init(true);
             LoadApplication(new App());
+        }
+
+        //Se debe agregar este método para poder tomar fotos en android desde la aplicación
+        public override void OnRequestPermissionsResult(
+            int requestCode, 
+            string[] permissions, 
+            [GeneratedEnum] Permission[] grantResults)
+        {
+            PermissionsImplementation.Current.OnRequestPermissionsResult(
+                requestCode, 
+                permissions, 
+                grantResults);
+
         }
     }
 }

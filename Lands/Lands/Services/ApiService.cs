@@ -357,7 +357,7 @@
             }
         }
 
-        public async Task<User> GetUserByEmail<T>(
+        public async Task<User> GetUserByEmail(
          string urlBase,
          string servicePrefix,
          string controller,
