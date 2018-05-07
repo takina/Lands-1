@@ -4,6 +4,8 @@
     using Views;
     using Lands.Helpers;
     using Lands.ViewModels;
+    using Lands.Services;
+    using Models;
 
     public partial class App : Application
 	{
@@ -31,9 +33,12 @@
             {
                 //Si hay token en la persistencia del telefono, entonces ponemos los token en memoria del teléfono
                 //y redirigimos de una ves al contenido de la aplicación sin tener que loguearse
+                var dataService = new DataService();
+                var user = dataService.First<UserLocal>(false);
                 var mainViewModel = MainViewModel.GetInstance();
                 mainViewModel.Token = Settings.Token;
                 mainViewModel.TokenType = Settings.TokenType;
+                mainViewModel.User = user;
                 mainViewModel.Lands = new LandsViewModel();
                 Application.Current.MainPage = new MasterPage();
             }

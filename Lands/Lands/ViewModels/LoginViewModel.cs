@@ -12,6 +12,7 @@
     {
         #region Services
         private ApiService apiService;
+        private DataService dataService;
         #endregion
 
         #region Attributes
@@ -57,6 +58,7 @@
         public LoginViewModel()
         {
             this.apiService = new ApiService();
+            this.dataService = new DataService();
 
             this.IsRemembered = true;
             this.IsEnabled = true;
@@ -164,17 +166,24 @@
                 "/Users/GetUserByEmail",
                 this.Email);
 
+            var userLocal = Converter.ToUserLocal(user);
+
             var mainViewModel = MainViewModel.GetInstance();
             //guardando el token en memoria de la aplicación
             mainViewModel.Token = token.AccessToken;
             mainViewModel.TokenType = token.TokenType;
-            mainViewModel.User = user;
+            mainViewModel.User = userLocal;
 
             if (this.IsRemembered)
             {
                 //Guardando los token en persistencia, es decir en la memoria del teléfono
                 Settings.Token = token.AccessToken;
                 Settings.TokenType = token.TokenType;
+
+                //Guardando los datos del usuario en local, para que se siga mostrando en la aplicación todos los datos
+                //cuando estemos logueados, entonces borramos el usuario que haya creado e insertamos el usuario con el que nos loguiemos o
+                //nos vayamos a loguear
+                this.dataService.DeleteAllAndInsert(userLocal);
             }
         
             mainViewModel.Lands = new LandsViewModel();

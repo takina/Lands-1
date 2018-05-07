@@ -28,7 +28,13 @@
             set;
         }
 
-        public User User
+        public UserLocal User
+        {
+            get;
+            set;
+        }
+
+        public MyProfileViewModel MyProfile
         {
             get;
             set;
