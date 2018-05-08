@@ -63,7 +63,7 @@
             this.IsRemembered = true;
             this.IsEnabled = true;
 
-            this.Email = "jzuluaga55@hotmail.com";
+            this.Email = "keila@hotmail.com";
             this.Password = "123456";
         }
         #endregion
@@ -164,6 +164,8 @@
                 apiSecurity,
                 "/api",
                 "/Users/GetUserByEmail",
+                token.TokenType,
+                token.AccessToken,
                 this.Email);
 
             var userLocal = Converter.ToUserLocal(user);

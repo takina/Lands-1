@@ -357,17 +357,22 @@
             }
         }
 
+        //La manera de darle seguridad a un método es pasandole tokens como parámetro,
+        //De esta manera si tratan de llamar el método desde fuera de la aplicación, como puede ser postman
+        //No se va dejar acceder al método sin token. Para que no hagan ataques externos a mi app
         public async Task<User> GetUserByEmail(
          string urlBase,
          string servicePrefix,
          string controller,
+         string tokenType,
+         string accessToken,
          string email)
         {
             try
             {
                 var model = new UserRequest
                 {
-                    Email = email,
+                    Email = email, 
                 };
                 //Capturo el modelo y lo serializo a formato Json, el objeto ya serializado, queda guardado en la variable request
                 var request = JsonConvert.SerializeObject(model);
@@ -376,6 +381,11 @@
                     Encoding.UTF8,
                     "application/json");
                 var client = new HttpClient();
+
+                //Aquí le metemos seguridad al método con el token
+                client.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue(tokenType, accessToken);
+
                 client.BaseAddress = new Uri(urlBase);
                 var url = string.Format("{0}{1}", servicePrefix, controller);
                 var response = await client.PostAsync(url, content);

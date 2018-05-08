@@ -30,6 +30,7 @@ namespace Lands.API.Controllers
         }
 
         // GET: api/Users/5
+        [Authorize]//Poniéndole seguridad al método, para poder llamarlo hay que enviarle el token
         [HttpPost]//Le cambiamos la naturaleza al método a un post
         [Route("GetUserByEmail")]//el método se va a llamar GetUserByEmail
         public async Task<IHttpActionResult> GetUserByEmail(JObject form)//Aquí le pasamos un objeto JSon como parámetro llamado form
@@ -61,38 +62,57 @@ namespace Lands.API.Controllers
         }
 
         // PUT: api/Users/5
+        [Authorize]//Poniéndole seguridad al método, para poder llamarlo hay que enviarle el token
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutUser(int id, User user)
         {
-            if (!ModelState.IsValid)
+            //Si el usuario tenía foto
+            if (user.ImageArray != null && user.ImageArray.Length > 0)
             {
-                return BadRequest(ModelState);
-            }
+                //Convirtiendo un ImageArray en un stream
+                var stream = new MemoryStream(user.ImageArray);
 
-            if (id != user.UserId)
-            {
-                return BadRequest();
-            }
+                //Un Guid es un código alfanumérico Random, que va a ser imposible que le de dos Guids iguales
+                //Es muy utilizado para generar claves
+                var guid = Guid.NewGuid().ToString();
 
-            db.Entry(user).State = EntityState.Modified;
+                //Al archivo guid, le ponemos como nombre de archivo jpg
+                var file = string.Format("{0}.jpg", guid);
 
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(id))
+                //Ese archivo se va a guardar en la carpeta Content/Image
+                var folder = "~/Content/Images";
+                var fullPath = string.Format("{0}/{1}", folder, file);
+                //Obtengo el verdadero o falso, depende de si se creó el archivo
+                var response = FilesHelper.UploadPhoto(stream, folder, file);
+
+                //Si se pudo crear, guarde el archivo en la propiedad del modelo
+                if (response)
                 {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
 
-            return StatusCode(HttpStatusCode.NoContent);
+                    user.ImagePath = fullPath;
+                }
+
+                db.Entry(user).State = EntityState.Modified;
+
+                try
+                {
+                    await db.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!UserExists(id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+
+                
+            }
+            return Ok(user);
         }
 
         // POST: api/Users
