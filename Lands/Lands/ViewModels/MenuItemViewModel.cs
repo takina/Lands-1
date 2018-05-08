@@ -33,6 +33,8 @@ namespace Lands.ViewModels
 
         private void Navigate()
         {
+            //Para ocultar el menú
+            App.Master.IsPresented = false;
 
             if (this.PageName == "LoginPage")
             {

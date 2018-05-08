@@ -17,6 +17,12 @@
             get;
             internal set;
         }
+        //Esta propiedad la ponemos aquí, para poder hacer visible o invisible el MenuPage
+        public static MasterPage Master
+        {
+            get;
+            internal set;
+        }
         #endregion
 
         #region Constructor

@@ -21,5 +21,20 @@ namespace Lands.Helpers
                 UserTypeId = user.UserTypeId,
             };
         }
+
+        public static User ToUserDomain(UserLocal user, byte[] imageArray)
+        {
+            return new User
+            {
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Telephone = user.Telephone,
+                UserId = user.UserId,
+                UserTypeId = user.UserTypeId.Value,
+                ImageArray = imageArray,
+
+            };
+        }
     }
 }

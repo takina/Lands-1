@@ -16,6 +16,7 @@ namespace Lands.Views
 		{
 			InitializeComponent ();
             App.Navigator = Navigator;
+            App.Master = this;
 		}
 	}
 }
