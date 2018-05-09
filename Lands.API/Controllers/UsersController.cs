@@ -30,8 +30,9 @@ namespace Lands.API.Controllers
         }
 
         // GET: api/Users/5
-        [Authorize]//Poniéndole seguridad al método, para poder llamarlo hay que enviarle el token
+        
         [HttpPost]//Le cambiamos la naturaleza al método a un post
+        [Authorize]//Poniéndole seguridad al método, para poder llamarlo hay que enviarle el token
         [Route("GetUserByEmail")]//el método se va a llamar GetUserByEmail
         public async Task<IHttpActionResult> GetUserByEmail(JObject form)//Aquí le pasamos un objeto JSon como parámetro llamado form
         {

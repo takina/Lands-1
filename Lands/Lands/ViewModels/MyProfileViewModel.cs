@@ -16,6 +16,7 @@ namespace Lands.ViewModels
     {
         #region Services
         private ApiService apiService;
+        private DataService dataService;
         #endregion
 
         #region Attributes
@@ -220,9 +221,21 @@ namespace Lands.ViewModels
                     Languages.Accept);
                 return;
             }
+            var userApi = await this.apiService.GetUserByEmail(
+               apiSecurity,
+               "/api",
+               "/Users/GetUserByEmail",
+               MainViewModel.GetInstance().TokenType,
+               MainViewModel.GetInstance().Token,
+               this.User.Email);
+
+            var userLocal = Converter.ToUserLocal(userApi);
+            MainViewModel.GetInstance().User = userLocal;
+            this.dataService.Update(userLocal);//Actualizando en base de datos
 
             this.IsRunning = false;
             this.IsEnabled = true;
+
 
      
             await App.Navigator.PopAsync();
@@ -232,7 +245,10 @@ namespace Lands.ViewModels
         #region Constructor
         public MyProfileViewModel()
         {
+            //Los servicio siempre s einstancian en el constructor
             this.apiService = new ApiService();
+            this.dataService = new DataService();
+
             this.User = MainViewModel.GetInstance().User;
             this.ImageSource = this.User.ImageFullPath;
             this.IsEnabled = true;

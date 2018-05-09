@@ -7,8 +7,12 @@
     using Lands.Helpers;
     using Models;
 
-    public class MainViewModel
+    public class MainViewModel:BaseViewModel
     {
+        #region Attributes
+        private UserLocal user;
+        #endregion
+
         #region Properties
         public List<Land> LandsList
         {
@@ -28,16 +32,16 @@
             set;
         }
 
-        public UserLocal User
+        public MyProfileViewModel MyProfile
         {
             get;
             set;
         }
 
-        public MyProfileViewModel MyProfile
+        public UserLocal User
         {
-            get;
-            set;
+            get { return this.user; }
+            set { SetValue(ref this.user, value); }
         }
 
 
